@@ -1,0 +1,14 @@
+/**/*.log*
+/**/.DS_Store
+/**/.project
+/**/.classpath
+/**/.settings/
+/**/target
+/**/test-output
+/**/dependency-reduced-pom.xml
+/**/.idea/
+/**/.iml
+/**/*.versionsBackup
+/**/.apt_generated/
+/**/.apt_generated_tests/
+/**/jte-classes/*
