@@ -19,3 +19,20 @@ Maven Coordinates
 <packaging>jar</packaging>
 ```
 
+Usage
+-------------
+
+The class "com.khubla.kspa.Spa" is the entry point. Simply pass it an API key in the ctor and call the methods.  
+
+```
+Spa spa = new Spa("abc123");
+Status status = spa.getStatus();
+System.out.println("Temperature :"+status.getTemperature());
+```
+
+```
+Spa spa = new Spa("abc123");
+spa.setLights(true);
+spa.setBlower(2, true);
+```
+
