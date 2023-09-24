@@ -107,11 +107,11 @@
                                             "type": "string",
                                             "description": "Filter status, one of [Idle,Purge,Filtering,Suspended,Overtemperature,Resuming,Boost,Sanitize]"
                                         },
-                                        "filter_duration": {
+                                        "filtration_duration": {
                                             "type": "integer",
                                             "description": "Filtering duration, in hours"
                                         },
-                                        "filter_frequency": {
+                                        "filtration_frequency": {
                                             "type": "number",
                                             "description": "Filtering frequency, in cycles/day"
                                         },
