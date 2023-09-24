@@ -13,6 +13,7 @@
 		<required-maven-version>3.3.1</required-maven-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>5.9.3</junit.version>
+		<openapi-generator-maven-plugin.version>7.0.1</openapi-generator-maven-plugin.version>
 	</properties>
 	<developers>
 		<developer>
@@ -90,14 +91,14 @@
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<version>7.0.1</version>
+				<version>${openapi-generator-maven-plugin.version}</version>
 				<executions>
 					<execution>
 						<goals>
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/arctic-spas-openapi.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/arctic-spas-openapi.json</inputSpec>
 							<generatorName>java</generatorName>
 							<configOptions>
 								<sourceFolder>src/gen/java/main</sourceFolder>
@@ -172,7 +173,7 @@
 						<configuration>
 							<!--
 							<javadocExecutable>${java.home}/bin/javadoc</javadocExecutable> -->
-							<source>8</source>
+							<source>${target.jvm}</source>
 						</configuration>
 					</plugin>
 					<plugin>
