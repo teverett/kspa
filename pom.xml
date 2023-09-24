@@ -76,6 +76,11 @@
 			<artifactId>findbugs-maven-plugin</artifactId>
 			<version>3.0.5</version>
 		</dependency>
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>3.1.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -98,7 +103,8 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/arctic-spas-openapi.json</inputSpec>
+							<inputSpec>
+								${project.basedir}/src/main/resources/arctic-spas-openapi.json</inputSpec>
 							<generatorName>java</generatorName>
 							<configOptions>
 								<sourceFolder>src/gen/java/main</sourceFolder>

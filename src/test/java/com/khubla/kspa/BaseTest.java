@@ -11,6 +11,7 @@ import org.openapitools.client.model.V2Spa200Response;
 
 public class BaseTest {
    protected static String apikey;
+   protected static final String BASE_URL = "https://api.myarcticspa.com";
 
    @BeforeAll
    static void setup() {
@@ -29,7 +30,7 @@ public class BaseTest {
       }
    }
 
-   protected V2Spa200Response getStatus(String url) throws ApiException {
+   protected V2Spa200Response getStatus() throws ApiException {
       /*
        * authenticate
        */
@@ -40,7 +41,7 @@ public class BaseTest {
           * api
           */
          SpaControlApi spaControlApi = new SpaControlApi(apiClient);
-         spaControlApi.setCustomBaseUrl(url);
+         spaControlApi.setCustomBaseUrl(BASE_URL);
          /*
           * get status
           */

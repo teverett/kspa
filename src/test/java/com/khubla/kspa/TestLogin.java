@@ -1,5 +1,6 @@
 package com.khubla.kspa;
 
+import static com.khubla.kspa.BaseTest.BASE_URL;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -12,8 +13,6 @@ import org.openapitools.client.model.V2Spa200Response;
  * @author Tom Everett
  */
 public class TestLogin extends BaseTest {
-   private static final String BASE_URL = "https://api.myarcticspa.com";
-
    @Test()
    void testlogin() {
       try {
@@ -44,7 +43,7 @@ public class TestLogin extends BaseTest {
    void testGetStatus() {
       try {
          if (null != apikey) {
-            V2Spa200Response v2Spa200Response = this.getStatus(BASE_URL);
+            V2Spa200Response v2Spa200Response = this.getStatus();
             assertNotNull(v2Spa200Response);
          }
       } catch (Exception e) {
