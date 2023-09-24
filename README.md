@@ -1,4 +1,6 @@
 
+[![CI](https://github.com/teverett/kspa/actions/workflows/main.yml/badge.svg)](https://github.com/teverett/kspa/actions/workflows/main.yml)
+
 KSpa
 =============
 
