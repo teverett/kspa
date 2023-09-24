@@ -60,7 +60,7 @@
                                             "description": "(If Spa Boy® connected) Spa oxygen reduction potential"
                                         },
                                         "orp_status": {
-                                            "type": "number",
+                                            "type": "string",
                                             "description": "(If Spa Boy® connected) Spa ORP status, one of [LOW,CAUTION_LOW,OK,CAUTION_HIGH,HIGH]"
                                         },
                                         "sds": {
@@ -118,6 +118,13 @@
                                         "filter_suspension": {
                                             "type": "boolean",
                                             "description": "Whether or not filtering will be suspended when in an overtemp state"
+                                        },
+                                        "errors": {
+                                            "type": "array",
+                                            "description": "Array of active error codes",
+                                            "items": {
+                                                "type": "string"
+                                            }
                                         }
                                     }
                                 }
@@ -208,12 +215,16 @@
                           "type": "object",
                           "properties": {
                             "state": {
-                                "style": "form",
                                 "type": "string",
                                 "enum": ["on", "off"],
                                 "description": "New state of lights"
                             }
                           }
+                        },
+                        "encoding": {
+                            "state": {
+                                "style": "form"
+                            }
                         }
                       }
                     }
@@ -261,6 +272,7 @@
                     {
                         "name": "pump",
                         "in": "path",
+                        "required": true,
                         "description": "Number of pump to control",
                         "schema": {
                             "type": "string",
@@ -330,12 +342,16 @@
                           "type": "object",
                           "properties": {
                             "state": {
-                                "style": "form",
                                 "type": "string",
                                 "enum": ["on", "off"],
                                 "description": "New state of easymode"
                             }
                           }
+                        },
+                        "encoding": {
+                            "state": {
+                                "style": "form"
+                            }
                         }
                       }
                     }
@@ -386,12 +402,16 @@
                           "type": "object",
                           "properties": {
                             "state": {
-                                "style": "form",
                                 "type": "string",
                                 "enum": ["on", "off"],
                                 "description": "New state of SDS"
                             }
                           }
+                        },
+                        "encoding" : {
+                            "state": {
+                                "style": "form"
+                            }
                         }
                       }
                     }
@@ -442,12 +462,16 @@
                           "type": "object",
                           "properties": {
                             "state": {
-                                "style": "form",
                                 "type": "string",
                                 "enum": ["on", "off"],
                                 "description": "New state of YESS"
                             }
                           }
+                        },
+                        "encoding": {
+                            "state": {
+                                "style": "form"
+                            }
                         }
                       }
                     }
@@ -534,12 +558,16 @@
                           "type": "object",
                           "properties": {
                             "state": {
-                                "style": "form",
                                 "type": "string",
                                 "enum": ["on", "off"],
                                 "description": "New state of fogger"
                             }
                           }
+                        },
+                        "encoding": {
+                            "state": {
+                                "style": "form"
+                            }
                         }
                       }
                     }
@@ -587,6 +615,7 @@
                     {
                         "name": "blower",
                         "in": "path",
+                        "required": true,
                         "description": "Number of blower to control",
                         "schema": {
                             "type": "string",
@@ -659,27 +688,37 @@
                           "type": "object",
                           "properties": {
                             "state": {
-                                "style": "form",
                                 "type": "string",
                                 "enum": ["on", "off"],
                                 "description": "New state of filter"
                             },
                             "frequency": {
-                                "style": "form",
                                 "type": "integer",
                                 "description": "New filtering frequency in cycles/day"
                             },
                             "duration": {
-                                "style": "form",
                                 "type": "integer",
                                 "description": "New filtering duration in hours"
                             },
                             "suspension": {
-                                "style": "form",
                                 "type": "boolean",
                                 "description": "Enable filter suspension when in an overtemp state"
                             }
                           }
+                        },
+                        "encoding": {
+                            "state": {
+                                "style": "form"
+                            },
+                            "frequency": {
+                                "style": "form"
+                            },
+                            "duration": {
+                                "style": "form"
+                            },
+                            "suspension": {
+                                "style": "form"
+                            }
                         }
                       }
                     }
