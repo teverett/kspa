@@ -24,8 +24,9 @@ public class Spa {
    private final ApiClient apiClient;
    private final SpaControlApi spaControlApi;
    private final ModelMapper modelMapper = new ModelMapper();
+   private final Capabilities capabilities;
 
-   public Spa(String apikey) {
+   public Spa(String apikey) throws ApiException {
       super();
       /*
        * key
@@ -41,6 +42,15 @@ public class Spa {
        */
       spaControlApi = new SpaControlApi(apiClient);
       spaControlApi.setCustomBaseUrl(BASE_URL);
+      /*
+       * query for capabilities
+       */
+      final Status status = getStatus();
+      capabilities = new Capabilities(status);
+   }
+
+   public Capabilities getCapabilities() {
+      return capabilities;
    }
 
    public Status getStatus() throws ApiException {
@@ -49,13 +59,15 @@ public class Spa {
    }
 
    public void setBlower(int blower, boolean on) throws ApiException {
-      final V2BlowerRequest v2BlowerRequest = new V2BlowerRequest();
-      if (on) {
-         v2BlowerRequest.state(V2BlowerRequest.StateEnum.ON);
-      } else {
-         v2BlowerRequest.state(V2BlowerRequest.StateEnum.OFF);
+      if ((blower > 0) && (blower <= capabilities.getNumberBlowers())) {
+         final V2BlowerRequest v2BlowerRequest = new V2BlowerRequest();
+         if (on) {
+            v2BlowerRequest.state(V2BlowerRequest.StateEnum.ON);
+         } else {
+            v2BlowerRequest.state(V2BlowerRequest.StateEnum.OFF);
+         }
+         spaControlApi.v2Blower(Integer.toString(blower), v2BlowerRequest);
       }
-      spaControlApi.v2Blower(Integer.toString(blower), v2BlowerRequest);
    }
 
    public void setBoost() throws ApiException {
@@ -83,13 +95,15 @@ public class Spa {
    }
 
    public void setFogger(boolean on) throws ApiException {
-      final V2FoggerRequest v2FoggerRequest = new V2FoggerRequest();
-      if (on) {
-         v2FoggerRequest.state(V2FoggerRequest.StateEnum.ON);
-      } else {
-         v2FoggerRequest.state(V2FoggerRequest.StateEnum.OFF);
+      if (capabilities.isHasFogger()) {
+         final V2FoggerRequest v2FoggerRequest = new V2FoggerRequest();
+         if (on) {
+            v2FoggerRequest.state(V2FoggerRequest.StateEnum.ON);
+         } else {
+            v2FoggerRequest.state(V2FoggerRequest.StateEnum.OFF);
+         }
+         spaControlApi.v2Fogger(v2FoggerRequest);
       }
-      spaControlApi.v2Fogger(v2FoggerRequest);
    }
 
    public void setLights(boolean on) throws ApiException {
@@ -103,23 +117,27 @@ public class Spa {
    }
 
    public void setPump(int pump, boolean on) throws ApiException {
-      final V2PumpRequest v2PumpRequest = new V2PumpRequest();
-      if (on) {
-         v2PumpRequest.state(V2PumpRequest.StateEnum.ON);
-      } else {
-         v2PumpRequest.state(V2PumpRequest.StateEnum.OFF);
+      if ((pump > 0) && (pump <= capabilities.getNumberPumps())) {
+         final V2PumpRequest v2PumpRequest = new V2PumpRequest();
+         if (on) {
+            v2PumpRequest.state(V2PumpRequest.StateEnum.ON);
+         } else {
+            v2PumpRequest.state(V2PumpRequest.StateEnum.OFF);
+         }
+         spaControlApi.v2Pump(Integer.toString(pump), v2PumpRequest);
       }
-      spaControlApi.v2Pump(Integer.toString(pump), v2PumpRequest);
    }
 
    public void setSDS(boolean on) throws ApiException {
-      final V2SDSRequest v2SDSRequest = new V2SDSRequest();
-      if (on) {
-         v2SDSRequest.state(V2SDSRequest.StateEnum.ON);
-      } else {
-         v2SDSRequest.state(V2SDSRequest.StateEnum.OFF);
+      if (capabilities.isHasSDS()) {
+         final V2SDSRequest v2SDSRequest = new V2SDSRequest();
+         if (on) {
+            v2SDSRequest.state(V2SDSRequest.StateEnum.ON);
+         } else {
+            v2SDSRequest.state(V2SDSRequest.StateEnum.OFF);
+         }
+         spaControlApi.v2SDS(v2SDSRequest);
       }
-      spaControlApi.v2SDS(v2SDSRequest);
    }
 
    public void setTemperature(int temp) throws ApiException {
@@ -129,12 +147,14 @@ public class Spa {
    }
 
    public void setYESS(boolean on) throws ApiException {
-      final V2YESSRequest v2YESSRequest = new V2YESSRequest();
-      if (on) {
-         v2YESSRequest.state(V2YESSRequest.StateEnum.ON);
-      } else {
-         v2YESSRequest.state(V2YESSRequest.StateEnum.OFF);
+      if (capabilities.isHasYESS()) {
+         final V2YESSRequest v2YESSRequest = new V2YESSRequest();
+         if (on) {
+            v2YESSRequest.state(V2YESSRequest.StateEnum.ON);
+         } else {
+            v2YESSRequest.state(V2YESSRequest.StateEnum.OFF);
+         }
+         spaControlApi.v2YESS(v2YESSRequest);
       }
-      spaControlApi.v2YESS(v2YESSRequest);
    }
 }

@@ -3,6 +3,9 @@ package com.khubla.kspa;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * @author Tom Everett
+ */
 public class Status {
    private Boolean connected;
    private Integer temperatureF;
