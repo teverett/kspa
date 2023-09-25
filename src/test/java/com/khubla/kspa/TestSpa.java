@@ -27,6 +27,8 @@ public class TestSpa extends BaseTest {
          if (null != apikey) {
             Spa spa = new Spa(this.apikey);
             spa.setLights(StateEnum.ON);
+            Thread.sleep(5 * 1000);
+            spa.setLights(StateEnum.OFF);
          }
       } catch (Exception e) {
          e.printStackTrace();
