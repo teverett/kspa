@@ -1,4 +1,4 @@
-
+StateEnum.ON
 [![CI](https://github.com/teverett/kspa/actions/workflows/main.yml/badge.svg)](https://github.com/teverett/kspa/actions/workflows/main.yml)
 
 KSpa
@@ -34,7 +34,7 @@ System.out.println("Temperature :"+status.getTemperature());
 
 ```
 Spa spa = new Spa("abc123");
-spa.setLights(true);
-spa.setBlower(2, true);
+spa.setLights(StateEnum.ON);
+spa.setBlower(2, StateEnum.ON);
 ```
 
